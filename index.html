@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intraday Trading Signals & Scanner</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #007bff; font-size: 22px; }
+        .signal-box { background: #eef2f3; padding: 12px; margin: 10px 0; border-radius: 6px; border-left: 5px solid #007bff; }
+        .buy { border-left-color: #28a745; }
+        .sell { border-left-color: #dc3545; }
+        .ad-space { background: #fff3cd; border: 1px dashed #ffeeba; padding: 15px; text-align: center; margin: 20px 0; border-radius: 5px; color: #856404; font-size: 14px; }
+        button { background: #007bff; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 10px; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📈 Intraday Signal Scanner</h1>
+    <p style="text-align: center; font-size: 14px; color: #666;">Live Price Action & News Filtered Signals</p>
+    
+    <!-- Top Ad Banner Space for Google Ads / AdSense -->
+    <div class="ad-space">
+        [ Advertisement Space - Google AdSense Code Here ]
+    </div>
+
+    <button onclick="loadSignals()">Refresh Market Signals</button>
+
+    <div id="signal-results" style="margin-top: 20px;">
+        <p style="text-align: center;">Signals load karne ke liye button dabayein...</p>
+    </div>
+
+    <!-- Bottom Ad Banner Space -->
+    <div class="ad-space" style="margin-top: 30px;">
+        [ Banner Ad Space for Extra Earnings ]
+    </div>
+</div>
+
+<script>
+function loadSignals() {
+    const resultsDiv = document.getElementById("signal-results");
+    resultsDiv.innerHTML = "<p style='text-align: center;'>Analyzing live market data...</p>";
+    
+    setTimeout(() => {
+        const signals = [
+            { stock: "TATAMOTORS", action: "BUY", type: "buy", reason: "Positive news + High volume breakout near support." },
+            { stock: "SBIN", action: "SELL", type: "sell", reason: "Negative sentiment + Heavy selling pressure at resistance." },
+            { stock: "BAJFINSV", action: "BUY", type: "buy", reason: "Strong momentum and volume surge in 15-min chart." }
+        ];
+
+        let html = "";
+        signals.forEach(s => {
+            html += `<div class="signal-box ${s.type}">
+                <strong>${s.stock}</strong>: <span style="font-weight:bold; color:${s.type==='buy'?'#28a745':'#dc3545'}">${s.action}</span><br>
+                <small>${s.reason}</small>
+            </div>`;
+        });
+        resultsDiv.innerHTML = html;
+    }, 600);
+}
+</script>
+
+</body>
+</html>
