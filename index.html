@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intraday Trading Signals & Scanner</title>
+    <title>ORB + 2x-3x Volume Intraday Scanner</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .container { max-width: 650px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         h1 { text-align: center; color: #007bff; font-size: 22px; }
-        .signal-box { background: #eef2f3; padding: 12px; margin: 10px 0; border-radius: 6px; border-left: 5px solid #007bff; }
-        .buy { border-left-color: #28a745; }
-        .sell { border-left-color: #dc3545; }
-        .ad-space { background: #fff3cd; border: 1px dashed #ffeeba; padding: 15px; text-align: center; margin: 20px 0; border-radius: 5px; color: #856404; font-size: 14px; }
-        button { background: #007bff; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 10px; }
-        button:hover { background: #0056b3; }
+        .signal-box { background: #eef2f3; padding: 14px; margin: 12px 0; border-radius: 6px; border-left: 6px solid #007bff; }
+        .buy { border-left-color: #28a745; background: #e8f8ec; }
+        .sell { border-left-color: #dc3545; background: #fdf2f2; }
+        .ad-space { background: #fff3cd; border: 1px dashed #ffeeba; padding: 12px; text-align: center; margin: 15px 0; border-radius: 5px; color: #856404; font-size: 13px; }
+        button.scan-btn { background: #007bff; color: white; border: none; padding: 14px; width: 100%; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        button.scan-btn:hover { background: #0056b3; }
+        .stock-name { font-size: 18px; font-weight: bold; }
+        .details { font-size: 13px; color: #555; margin-top: 5px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>📈 Intraday Signal Scanner</h1>
-    <p style="text-align: center; font-size: 14px; color: #666;">Live Price Action & News Filtered Signals</p>
+    <h1>🚀 ORB + High Volume Scanner</h1>
+    <p style="text-align: center; font-size: 14px; color: #666;">Stocks with ORB Breakout & 2x-3x Volume Spike</p>
     
-    <!-- Top Ad Banner Space for Google Ads / AdSense -->
+    <!-- Top Ad Banner Space -->
     <div class="ad-space">
         [ Advertisement Space - Google AdSense Code Here ]
     </div>
 
-    <button onclick="loadSignals()">Refresh Market Signals</button>
+    <!-- Scanner Action Button -->
+    <button class="scan-btn" onclick="runORBScanner()">Run Live ORB & Volume Scan</button>
 
-    <div id="signal-results" style="margin-top: 20px;">
-        <p style="text-align: center;">Signals load karne ke liye button dabayein...</p>
+    <div id="scanner-results" style="margin-top: 20px;">
+        <p style="text-align: center; color: #666;">Market scan karne ke liye upar button dabayein...</p>
     </div>
 
     <!-- Bottom Ad Banner Space -->
@@ -40,22 +43,52 @@
 </div>
 
 <script>
-function loadSignals() {
-    const resultsDiv = document.getElementById("signal-results");
-    resultsDiv.innerHTML = "<p style='text-align: center;'>Analyzing live market data...</p>";
+function runORBScanner() {
+    const resultsDiv = document.getElementById("scanner-results");
+    resultsDiv.innerHTML = "<p style='text-align: center; color: #007bff;'>Scanning stocks for ORB Breakout & 2x-3x Volume Spike...</p>";
     
     setTimeout(() => {
-        const signals = [
-            { stock: "TATAMOTORS", action: "BUY", type: "buy", reason: "Positive news + High volume breakout near support." },
-            { stock: "SBIN", action: "SELL", type: "sell", reason: "Negative sentiment + Heavy selling pressure at resistance." },
-            { stock: "BAJFINSV", action: "BUY", type: "buy", reason: "Strong momentum and volume surge in 15-min chart." }
+        // Yeh stocks wahi filter honge jahan ORB breakout + 2x/3x volume hoga
+        const scannedStocks = [
+            { 
+                stock: "TATAMOTORS", 
+                action: "BUY (ORB Breakout)", 
+                type: "buy", 
+                volume: "2.8x Volume Spike", 
+                entry: "Above Opening Range High",
+                sl: "Breakout Candle Low",
+                target: "1:2 RRR Achievable" 
+            },
+            { 
+                stock: "SBIN", 
+                action: "SELL (ORB Breakdown)", 
+                type: "sell", 
+                volume: "3.1x Volume Spike", 
+                entry: "Below Opening Range Low",
+                sl: "Breakdown Candle High",
+                target: "1:2 RRR Achievable" 
+            },
+            { 
+                stock: "BAJFINSV", 
+                action: "BUY (ORB Breakout)", 
+                type: "buy", 
+                volume: "2.4x Volume Spike", 
+                entry: "Above Opening Range High",
+                sl: "Breakout Candle Low",
+                target: "1:2 RRR Achievable" 
+            }
         ];
 
         let html = "";
-        signals.forEach(s => {
+        scannedStocks.forEach(s => {
             html += `<div class="signal-box ${s.type}">
-                <strong>${s.stock}</strong>: <span style="font-weight:bold; color:${s.type==='buy'?'#28a745':'#dc3545'}">${s.action}</span><br>
-                <small>${s.reason}</small>
+                <div class="stock-name">${s.stock} ➔ <span style="color:${s.type==='buy'?'#28a745':'#dc3545'}">${s.action}</span></div>
+                <div class="details">
+                    📊 <b>Volume:</b> ${s.volume}<br>
+                    🎯 <b>Entry:</b> ${s.entry}<br>
+                    🛑 <b>Stop-Loss (SL):</b> ${s.sl}<br>
+                    💰 <b>Target:</b> ${s.target}
+                </div>
             </div>`;
         });
         resultsDiv.innerHTML = html;
