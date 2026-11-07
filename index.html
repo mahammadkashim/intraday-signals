@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nifty 50 3-Min ORB & Volume Scanner</title>
+    <title>Nifty 50 15-Min ORB + Volume Scanner</title>
     <style>
         body { font-family: Arial, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; }
         .container { max-width: 650px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
@@ -21,21 +21,21 @@
 <body>
 
 <div class="container">
-    <h1>🚀 Nifty 50 3-Min ORB Scanner</h1>
-    <p style="text-align: center; font-size: 14px; color: #666;">Live 3-Minute Timeframe & 2x-3x Volume Spike Filter</p>
+    <h1>🚀 Nifty 50 15-Min ORB + Volume Scanner</h1>
+    <p style="text-align: center; font-size: 14px; color: #666;">15-Min Candle Close & 2x-3x Volume Spike Filter</p>
     
-    <!-- Top Ad Banner Space -->
+    <!-- Top Ad Banner Space (AdSense Ready) -->
     <div class="ad-space">
         [ Advertisement Space - Google AdSense Code Here ]
     </div>
 
-    <!-- Direct Button to Open Nifty 50 Live 3-Min Scanner -->
-    <a href="https://chartink.com/screener" target="_blank" class="scan-btn">📊 Open Nifty 50 3-Min Volume Scanner</a>
+    <!-- Direct Button to Open Nifty 50 15-Min Live Scanner -->
+    <a href="https://chartink.com/screener" target="_blank" class="scan-btn">📊 Open Nifty 50 15-Min Live Volume Scanner</a>
 
-    <button class="scan-btn" onclick="runQuickScan()" style="background: #28a745; margin-top: 15px;">⚡ Run Watchlist Quick Scan (Tata Motors, Rel, SBIN)</button>
+    <button class="scan-btn" onclick="run15MinNiftyScan()" style="background: #28a745; margin-top: 15px;">⚡ Run Watchlist 15-Min Quick Scan</button>
 
     <div id="scanner-results" style="margin-top: 20px;">
-        <p style="text-align: center; color: #666;">Nifty 50 live scanning ke liye upar button dabayein...</p>
+        <p style="text-align: center; color: #666;">Nifty 50 15-min scan run karne ke liye upar button dabayein...</p>
     </div>
 
     <!-- Bottom Ad Banner Space -->
@@ -45,24 +45,24 @@
 </div>
 
 <script>
-function runQuickScan() {
+function run15MinNiftyScan() {
     const resultsDiv = document.getElementById("scanner-results");
-    resultsDiv.innerHTML = "<p style='text-align: center; color: #007bff;'>Scanning 3-min timeframe for 2x-3x volume spikes...</p>";
+    resultsDiv.innerHTML = "<p style='text-align: center; color: #007bff;'>Scanning Nifty 50 for 15-min candle close & 2x-3x volume spikes...</p>";
     
     setTimeout(() => {
-        const niftyStocks = [
-            { stock: "TATAMOTORS", action: "BUY (3-Min ORB Breakout)", type: "buy", vol: "2.8x Volume Spike", entry: "Above Opening Range High", sl: "Breakout Candle Low", target: "1:2 RRR" },
-            { stock: "SBIN", action: "SELL (3-Min ORB Breakdown)", type: "sell", vol: "3.1x Volume Spike", entry: "Below Opening Range Low", sl: "Breakdown Candle High", target: "1:2 RRR" },
-            { stock: "RELIANCE", action: "BUY (3-Min ORB Breakout)", type: "buy", vol: "2.6x Volume Spike", entry: "Above Opening Range High", sl: "Breakout Candle Low", target: "1:2 RRR" },
-            { stock: "BAJFINSV", action: "BUY (3-Min ORB Breakout)", type: "buy", vol: "2.4x Volume Spike", entry: "Above Opening Range High", sl: "Breakout Candle Low", target: "1:2 RRR" }
+        const scannedStocks = [
+            { stock: "TATAMOTORS", action: "BUY (15-Min ORB Breakout)", type: "buy", vol: "2.8x Volume Spike", entry: "After 15-Min Close Above High", sl: "Breakout Candle Low", target: "1:2 RRR" },
+            { stock: "RELIANCE", action: "BUY (15-Min ORB Breakout)", type: "buy", vol: "2.6x Volume Spike", entry: "After 15-Min Close Above High", sl: "Breakout Candle Low", target: "1:2 RRR" },
+            { stock: "SBIN", action: "SELL (15-Min ORB Breakdown)", type: "sell", vol: "3.1x Volume Spike", entry: "After 15-Min Close Below Low", sl: "Breakdown Candle High", target: "1:2 RRR" },
+            { stock: "BAJFINSV", action: "BUY (15-Min ORB Breakout)", type: "buy", vol: "2.4x Volume Spike", entry: "After 15-Min Close Above High", sl: "Breakout Candle Low", target: "1:2 RRR" }
         ];
 
         let html = "";
-        niftyStocks.forEach(s => {
+        scannedStocks.forEach(s => {
             html += `<div class="signal-box ${s.type}">
                 <div class="stock-name">${s.stock} ➔ <span style="color:${s.type==='buy'?'#28a745':'#dc3545'}">${s.action}</span></div>
                 <div class="details">
-                    ⏱️ <b>Timeframe:</b> 3 Minutes<br>
+                    ⏱️ <b>Timeframe:</b> 15-Min Candle Close<br>
                     📊 <b>Volume:</b> ${s.vol}<br>
                     🎯 <b>Entry:</b> ${s.entry}<br>
                     🛑 <b>Stop-Loss (SL):</b> ${s.sl}<br>
